@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    // Disable right-click menu
+    window.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+
+    // Disable inspect feature
+    window.addEventListener('keydown', function (e) {
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+        e.preventDefault();
+      }
+    });
+  </script>
+  <title>File Download Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000000;
+      color: #fff;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #00cc00;
+      text-align: center;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .file-box {
+      background-color: #333;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .file-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+
+    .file-label {
+      font-weight: bold;
+    }
+
+    .download-button {
+      background-color: #00cc00;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+
+    .download-button:hover {
+      background-color: #008800;
+    }
+
+    @media (max-width: 480px) {
+      .file-details {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>File Download Page</h1>
+  <ul id="fileList"></ul>
+
+  <script>
+    const files = [
+      {
+        name: 'Cocomelon from Ohio',
+        path: 'files/Cocomelon from Ohio.mp4',
+        size: '16.6 MB',
+        type: 'Video File',
+        uploadedDate: 'May 29, 2023'
+      },
+
+      {
+        name: 'Eat My brain',
+        path: 'files/song2.mp3',
+        size: '6.80 MB',
+        type: 'Audio File',
+        uploadedDate: 'May 29, 2023'
+      },
+      // Add more files here with their details
+    ];
+
+    function populateFileList() {
+      const fileList = document.getElementById('fileList');
+      fileList.innerHTML = '';
+
+      files.forEach(file => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('file-box');
+        const downloadButton = document.createElement('button');
+        downloadButton.innerText = 'Download';
+        downloadButton.classList.add('download-button');
+        downloadButton.addEventListener('click', () => {
+          downloadFile(file.path);
+        });
+        const fileDetails = document.createElement('div');
+        fileDetails.classList.add('file-details');
+        fileDetails.innerHTML = `
+          <div class="file-label">Name:</div>
+          <div>${file.name}</div>
+          <div class="file-label">Size:</div>
+          <div>${file.size}</div>
+          <div class="file-label">Type:</div>
+          <div>${file.type}</div>
+          <div class="file-label">Uploaded Date:</div>
+          <div>${file.uploadedDate}</div>
+        `;
+        listItem.appendChild(fileDetails);
+        listItem.appendChild(downloadButton);
+        fileList.appendChild(listItem);
+      });
+    }
+
+    function downloadFile(filePath) {
+      const link = document.createElement('a');
+      link.href = filePath;
+      link.download = filePath.split('/').pop();
+      link.click();
+    }
+
+    // Call the function initially to populate the file list
+    populateFileList();
+
+  </script>
+<script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
+<div class="commonninja_component pid-76a61944-1efd-4e86-8fb1-cc8f767a75c1"></div>
+</body>
+</html>
