@@ -1,148 +1,470 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script>
-    // Disable right-click menu
-    window.addEventListener('contextmenu', function (e) {
-      e.preventDefault();
-    });
-
-    // Disable inspect feature
-    window.addEventListener('keydown', function (e) {
-      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
-        e.preventDefault();
-      }
-    });
-  </script>
-  <title>@Secure Pvt File Space.Main</title>
+  <title>File Details and Download</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #000000;
+      background-color: #222;
       color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
       padding: 20px;
     }
 
     h1 {
-      color: #00cc00;
+      color: #0f0;
       text-align: center;
     }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    .file-box {
-      background-color: #333;
-      padding: 10px;
-      border-radius: 5px;
+     h4 {
+      color: rgb(255, 0, 0);
+      text-align: center;
     }
 
     .file-details {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 5px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
     }
 
-    .file-label {
-      font-weight: bold;
+    .file-card {
+      background-color: #333;
+      border: 1px solid #0f0;
+      padding: 10px;
+      text-align: center;
     }
 
-    .download-button {
-      background-color: #00cc00;
+    .file-card h3 {
+      margin-top: 0;
+    }
+
+    .file-card p {
+      margin: 5px 0;
+    }
+
+    .file-card .download-button {
+      background-color: #0f0;
+      border: none;
+      color: #000;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .file-card .download-button:hover {
+      background-color: #090;
+    }
+
+    input[type="search"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      background-color: #333;
       color: #fff;
       border: none;
-      padding: 5px 10px;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      width: 100%;
     }
 
-    .download-button:hover {
-      background-color: #008800;
-    }
-
-    @media (max-width: 480px) {
-      .file-details {
-        grid-template-columns: 1fr;
-      }
+    ::placeholder {
+      color: #999;
     }
   </style>
 </head>
 <body>
-  <h1>@Secure Pvt File Space.Main</h1>
-  <ul id="fileList"></ul>
-
+  <h1>Data Base area 1</h1>
+  <h4>Be carefully ! These files can be harmfull !</h4>
+  
+  <input type="search" id="searchInput" placeholder="Search by file name" oninput="searchFiles()">
+  
+  <div class="file-details" id="fileList"></div>
   <script>
     const files = [
       {
-        name: 'Cocomelon from Ohio',
-        path: 'files/Cocomelon from Ohio.mp4',
-        size: '16.6 MB',
-        type: 'Video File',
-        uploadedDate: 'May 29, 2023'
-      },
+        name: 'Internet_Download_Manager_6_41_Build_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/e9Tdr8ucz6/Internet_Download_Manager_6_41_Build_zip'
+},
+{
+name: 'LOIC_1_0_8_binary_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/odVcr3uaz3/LOIC_1_0_8_binary_zip'
+},
+{
+name: 'DevModding_DDos_v3_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/B1Zer2u9z9/DevModding_DDos_v3_zip'
+},
+{
+name: 'Destroy_DoS_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/C7Zcr3u0zf/Destroy_DoS_zip'
+},
+{
+name: 'DDOSER_APRIL_PATCH_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/DeZdr7uaz8/DDOSER_APRIL_PATCH_zip'
+},
+{
+name: 'works_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/EaZ6rdu6z0/works_rar'
+},
+{
+name: 'Pro_Dos_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/H7Zardu3z9/Pro_Dos_zip'
+},
+{
+name: 'VIRUS001_TB_master_batch_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/I3Z6r8u0zc/VIRUS001_TB_master_batch_zip'
+},
+{
+name: 'Virus_Maker_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/LfZ1rbu1zc/Virus_Maker_rar'
+},
+{
+name: 'UDP_Flooder_By_FKN_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/MfZ3r0u5zc/UDP_Flooder_By_FKN_rar'
+},
+{
+name: 'TeV_DoS_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/O0Z5rfufz4/TeV_DoS_rar'
+},
+{
+name: 'Super_virus_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/RdZar4ucz6/Super_virus_rar'
+},
+{
+name: 'Tsunami_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/S0Z5rcu9z7/Tsunami_rar'
+},
+{
+name: 'ddoser_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/T3Z6r8u9z2/ddoser_zip'
+},
+{
+name: 'stllssvr_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/UbZ4r9udzf/stllssvr_rar'
+},
+{
+name: 'spam_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/V3Z2r6u3z9/spam_rar'
+},
+{
+name: 'Sprut_Pega_Ip_DDoser_6_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/WaZbr2ufz4/Sprut_Pega_Ip_DDoser_6_rar'
+},
+{
+name: 'stax_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/Y6Zar7u2z8/stax_rar'
+},
+{
+name: 'Slayer_DDos_2_0_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/a6a4s8uez3/Slayer_DDos_2_0_rar'
+},
+{
+name: 'NNEmailSpammer_Public_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/b4adsdubz8/NNEmailSpammer_Public_rar'
+},
+{
+name: 'siinst_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/c3a2s4u7z2/siinst_rar'
+},
+{
+name: 'Kraken_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/d1aesbuczb/Kraken_rar'
+},
+{
+name: 'jays_booter_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/eea9s8u3zd/jays_booter_rar'
+},
+{
+name: 'Shockwave_Booter_v2_0_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/g9a7s4uaz4/Shockwave_Booter_v2_0_rar'
+},
+{
+name: 'IP_GRABBER_AND_DDOSER_PACK_V1_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/h2a0s5ubz9/IP_GRABBER_AND_DDOSER_PACK_V1_rar'
+},
+{
+name: 'worms_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/i7a5s1u6z3/worms_rar'
+},
+{
+name: 'Infamous_Stresser_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/k6acs5ubz8/Infamous_Stresser_rar'
+},
+{
+name: 'Hoic_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/m7afs0ufza/Hoic_rar'
+},
+{
+name: 'Flooder_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/nba5s0uez7/Flooder_rar'
+},
+{
+name: 'EbraSha_Dos_Attacker_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/ocaas8u7z3/EbraSha_Dos_Attacker_rar'
+},
+{
+name: 'Exploit_Attacker_v1_1_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/p7aes4u3zd/Exploit_Attacker_v1_1_rar'
+},
+{
+name: 'DDOS_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/qeafs7u7za/DDOS_rar'
+},
+{
+name: 'BuffMods_DDos_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/tba9s0uaz4/BuffMods_DDos_rar'
+},
+{
+name: 'MaddStress_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/ueaas3u4z3/MaddStress_rar'
+},
+{
+name: 'ddvniek_s_Hacker_Toolbox_1_2_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/v3a9s0udzd/ddvniek_s_Hacker_Toolbox_1_2_rar'
+},
+{
+name: 'BuffMods_DDos_V2_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/w6adscufz7/BuffMods_DDos_V2_rar'
+},
+{
+name: 'BFF_DoS_Ping_v1_0_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/x2acs0u1zf/BFF_DoS_Ping_v1_0_rar'
+},
+{
+name: 'Ad_Clicker_Bot_Private_Free_Hack_VIP_Tool_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/yca5scu2z2/Ad_Clicker_Bot_Private_Free_Hack_VIP_Tool_rar'
+},
+{
+name: '360Booter_GBooter_XBL_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/zba5sbu2ze/360Booter_GBooter_XBL_rar'
+},
+{
+name: 'Auto_spreader_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/4fa3s5u7zd/Auto_spreader_rar'
+},
+{
+name: 'Loveware_master_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/74a7s5u6z4/Loveware_master_zip'
+},
+{
+name: 'HackBGRT_1_5_1_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/98a1s5u7z3/HackBGRT_1_5_1_zip'
+},
+{
+name: 'fern_wifi_cracker_kali_master_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/E2a0saufzd/fern_wifi_cracker_kali_master_zip'
+},
+{
+name: 'D_Ds_Hk_Tls_Pck_1_0_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/Gea8scuaze/D_Ds_Hk_Tls_Pck_1_0_rar'
+},
+{
+name: 'VPN_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/cbb0s8u6zd/VPN_rar'
+},
+{
+name: 'Virus_tools_main_zip',
+type: 'zip',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/xebes6u3z1/Virus_tools_main_zip'
+},
+{
+name: 'Debut_Screen_Recorde_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/37bcseu4z8/Debut_Screen_Recorde_rar'
+},
+{
+name: 'Kon_Boot_iso',
+type: 'iso',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/W3basbu5zd/Kon_Boot_iso'
+},
+{
+name: 'Memtest86_5_1_0_iso',
+type: 'iso',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/f4c8sfuaz0/Memtest86_5_1_0_iso'
+},
+{
+name: 'KernelPasswordUnmask_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/pdc5s3uazc/KernelPasswordUnmask_rar'
+},
+{
+name: 'Windows_Loader_v2_1_4_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/yecfs5ufz4/Windows_Loader_v2_1_4_rar'
+},
+{
+name: 'Windows_7_Activador_rar',
+type: 'rar',
+uploadedDate: '2023-05-30',
+filePath: 'https://anonfiles.com/38cesbudz8/Windows_7_Activador_rar'
+},
 
-      {
-        name: 'Eat My brain',
-        path: 'files/song2.mp3',
-        size: '6.80 MB',
-        type: 'Audio File',
-        uploadedDate: 'May 29, 2023'
-      },
-      // Add more files here with their details
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
     ];
 
-    function populateFileList() {
-      const fileList = document.getElementById('fileList');
-      fileList.innerHTML = '';
+    function renderFiles(fileList) {
+      const fileDetails = document.getElementById('fileList');
+      fileDetails.innerHTML = '';
 
-      files.forEach(file => {
-        const listItem = document.createElement('li');
-        listItem.classList.add('file-box');
+      fileList.forEach(file => {
+        const fileCard = document.createElement('div');
+        fileCard.className = 'file-card';
+
+        const fileName = document.createElement('h3');
+        fileName.innerText = file.name;
+
+        const fileSize = document.createElement('p');
+        fileSize.innerText = 'Size: ' + file.size;
+
+        const fileType = document.createElement('p');
+        fileType.innerText = 'Type: ' + file.type;
+
+        const uploadedDate = document.createElement('p');
+        uploadedDate.innerText = 'Uploaded: ' + file.uploadedDate;
+
         const downloadButton = document.createElement('button');
+        downloadButton.className = 'download-button';
         downloadButton.innerText = 'Download';
-        downloadButton.classList.add('download-button');
         downloadButton.addEventListener('click', () => {
-          downloadFile(file.path);
+          downloadFile(file.filePath);
         });
-        const fileDetails = document.createElement('div');
-        fileDetails.classList.add('file-details');
-        fileDetails.innerHTML = `
-          <div class="file-label">Name:</div>
-          <div>${file.name}</div>
-          <div class="file-label">Size:</div>
-          <div>${file.size}</div>
-          <div class="file-label">Type:</div>
-          <div>${file.type}</div>
-          <div class="file-label">Uploaded Date:</div>
-          <div>${file.uploadedDate}</div>
-        `;
-        listItem.appendChild(fileDetails);
-        listItem.appendChild(downloadButton);
-        fileList.appendChild(listItem);
+
+        fileCard.appendChild(fileName);
+        fileCard.appendChild(fileSize);
+        fileCard.appendChild(fileType);
+        fileCard.appendChild(uploadedDate);
+        fileCard.appendChild(downloadButton);
+
+        fileDetails.appendChild(fileCard);
       });
+    }
+
+    function searchFiles() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const filteredFiles = files.filter(file => file.name.toLowerCase().includes(searchTerm));
+      renderFiles(filteredFiles);
     }
 
     function downloadFile(filePath) {
       const link = document.createElement('a');
-      link.href = filePath;
+      link.href = 'file:///' + filePath;
       link.download = filePath.split('/').pop();
       link.click();
     }
 
-    // Call the function initially to populate the file list
-    populateFileList();
-
+    // Render the files initially
+    renderFiles(files);
   </script>
-
 </body>
 </html>
