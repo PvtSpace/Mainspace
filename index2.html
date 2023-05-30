@@ -456,11 +456,8 @@ filePath: 'https://anonfiles.com/38cesbudz8/Windows_7_Activador_rar'
       renderFiles(filteredFiles);
     }
 
-    function downloadFile(filePath) {
-      const link = document.createElement('a');
-      link.href = 'file:///' + filePath;
-      link.download = filePath.split('/').pop();
-      link.click();
+   function downloadFile(filePath) {
+  window.open(filePath);
     }
 
     // Render the files initially
