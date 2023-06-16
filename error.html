@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popup Window</title>
+    <style>
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            width: 300px;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            animation: popupAnimation 0.3s ease-out;
+        }
+
+        @keyframes popupAnimation {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    </style>
+    <script>
+        function showPopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+        }
+
+        function hidePopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <h1>Popup Window Example</h1>
+    <button onclick="showPopup()">Show Popup</button>
+
+    <div id="popup" class="popup" style="display: none;">
+        <h2>Please Download The App to Continue</h2>
+        <button onclick="hidePopup()">Close</button>
+    </div>
+</body>
+</html>
